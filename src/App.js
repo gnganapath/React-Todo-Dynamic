@@ -16,10 +16,15 @@ handleChange = (e) => {
       this.setState({ [e.target.name]: e.target.value.toUpperCase() })
     }
   }
-addCat = (e) => {
+addDevice = (e) => {
     this.setState((prevState) => ({
     devices: [...prevState.devices, {check:"",name:"", password:""}],
     }));
+  }
+
+  deleteDevice = (e) =>{
+    console.log(this.state.devices.filter( item=> item.name !== 'A'));  // Device name not A are get fillter  Id based delete can 
+    this.setState( { devices: this.state.devices.filter( item=> item.name !== 'A') });
   }
 handleSubmit = (e) => { 
     e.preventDefault() 
@@ -63,7 +68,8 @@ render() {
         <input type="text" name="owner" id="owner" value={owner} />
         <label htmlFor="description">Description</label> 
         <input type="text" name="description" id="description" value={description} /> */}
-        <button onClick={this.addCat}>Add new cat</button>
+        <button onClick={this.addDevice}>Add new Device</button>
+        <button onClick={this.deleteDevice}>Delete Device/s</button>
         {
           devices.map((val, idx)=> {
             let deviceId = `Device Name-${idx}`, passwordId = `Password-${idx}`,checkId = `check-${idx}`
